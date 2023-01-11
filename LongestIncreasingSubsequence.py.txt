@@ -1,0 +1,23 @@
+class Solution(object):
+    def findMax(self, nums, lis, index):
+        maxNum = float("-inf")
+        maxSub = 0
+        for i in range(index):
+            if nums[i] < nums[index] and lis[i] > maxSub:
+                maxSub = lis[i]
+
+        return maxSub
+
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        lis = []
+        maxSub = 1
+        for i in range(len(nums)):
+            lis.append(1 + self.findMax(nums, lis, i))
+            if (lis[i] > maxSub):
+                maxSub = lis[i]
+
+        return maxSub
